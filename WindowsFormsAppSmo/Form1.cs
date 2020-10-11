@@ -20,19 +20,29 @@ namespace WindowsFormsAppSmo
         private SmoOperations _operations = new SmoOperations();
         private void cmdLoadDatabaseNames_Click(object sender, EventArgs e)
         {
-            //var ops = new SmoOperations();
+
             lstDatabaseNames.DataSource = _operations.DatabaseNames();
-            var Index = lstDatabaseNames.FindString("NorthWindAzure");
-            if (Index > -1)
+
+            /*
+             * If Karen's computer there is a database NorthWindAzure
+             */
+            if (Environment.UserName == "PayneK")
             {
-                lstDatabaseNames.SelectedIndex = Index;
-                lstTableNames.DataSource = _operations.TableNames(lstDatabaseNames.Text);
-                Index = lstTableNames.FindString("Orders");
-                if (Index > -1)
+                var index = lstDatabaseNames.FindString("NorthWindAzure");
+
+                if (index > -1)
                 {
-                    lstTableNames.SelectedIndex = Index;
+                    lstDatabaseNames.SelectedIndex = index;
+                    lstTableNames.DataSource = _operations.TableNames(lstDatabaseNames.Text);
+                    index = lstTableNames.FindString("Orders");
+
+                    if (index > -1)
+                    {
+                        lstTableNames.SelectedIndex = index;
+                    }
                 }
             }
+
 
             lstDatabaseNames.SelectedIndexChanged += LstDatabaseNames_SelectedIndexChanged;
         }

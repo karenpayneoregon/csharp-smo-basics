@@ -50,7 +50,10 @@ namespace SMO_Library
                     ServerName = row.Field<string>("Server")
                 }).ToList();
 
-        public List<string> DatabaseNames() => _mServer.Databases.OfType<Database>().Select(db => db.Name).ToList();
+        public List<string> DatabaseNames()
+        {
+            return _mServer.Databases.OfType<Database>().Select(db => db.Name).ToList();
+        }
 
         /// <summary>
         /// Determine if database exists on the server.
@@ -155,13 +158,11 @@ namespace SMO_Library
         {
             var tableNames = new List<string>(); 
 
-            var database = _mServer.Databases.OfType<Database>()
-                .FirstOrDefault(tbl => tbl.Name == pDatabaseName);
+            var database = _mServer.Databases.OfType<Database>().FirstOrDefault(tbl => tbl.Name == pDatabaseName);
 
             if (database != null)
             {
-                tableNames = database.Tables.OfType<Table>()
-                    .Where(tbl => !tbl.IsSystemObject).Select(tbl => tbl.Name).ToList();
+                tableNames = database.Tables.OfType<Table>().Where(tbl => !tbl.IsSystemObject).Select(tbl => tbl.Name).ToList();
             }
 
             return tableNames;
