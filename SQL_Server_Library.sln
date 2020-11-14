@@ -16,9 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		readme.md = readme.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helpers", "Helpers", "{2A9EC76D-1908-4A5D-95D5-5563A159B639}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuGetPackageHelpers", "NuGetPackageHelpers\NuGetPackageHelpers.csproj", "{4F8D7E77-2F4E-4252-8511-023197D18CEE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeleteMeLater", "DeleteMeLater\DeleteMeLater.csproj", "{889A3FD1-EA62-4F89-BD7D-88B32D7F49B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,16 +40,13 @@ Global
 		{D64DEDD7-A3DE-4A77-A85B-C642781B4643}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D64DEDD7-A3DE-4A77-A85B-C642781B4643}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D64DEDD7-A3DE-4A77-A85B-C642781B4643}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4F8D7E77-2F4E-4252-8511-023197D18CEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F8D7E77-2F4E-4252-8511-023197D18CEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F8D7E77-2F4E-4252-8511-023197D18CEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F8D7E77-2F4E-4252-8511-023197D18CEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{889A3FD1-EA62-4F89-BD7D-88B32D7F49B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{889A3FD1-EA62-4F89-BD7D-88B32D7F49B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{889A3FD1-EA62-4F89-BD7D-88B32D7F49B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{889A3FD1-EA62-4F89-BD7D-88B32D7F49B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{4F8D7E77-2F4E-4252-8511-023197D18CEE} = {2A9EC76D-1908-4A5D-95D5-5563A159B639}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1601C2BA-6457-428F-9454-F4CD731B37CD}

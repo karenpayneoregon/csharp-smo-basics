@@ -27,7 +27,8 @@ namespace SMO_Library
         /// </summary>
         public string ServerName { get => ".\\SQLEXPRESS"; }
         private Server _mServer;
-        public Server Server { get { return _mServer; } }
+        public Server Server => _mServer;
+
         public SmoOperations()
         {
             _mServer = InitializeServer();

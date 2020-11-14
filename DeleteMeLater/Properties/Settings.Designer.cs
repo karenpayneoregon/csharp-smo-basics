@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NuGetPackageHelpers.Properties
+namespace DeleteMeLater.Properties
 {
 
 

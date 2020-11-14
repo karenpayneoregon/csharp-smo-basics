@@ -17,6 +17,7 @@ namespace WindowsFormsAppSmo
         {
             InitializeComponent();
         }
+
         private SmoOperations _operations = new SmoOperations();
         private void cmdLoadDatabaseNames_Click(object sender, EventArgs e)
         {

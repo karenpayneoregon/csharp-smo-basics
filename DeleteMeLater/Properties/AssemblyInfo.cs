@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("NuGetPackageHelpers")]
+[assembly: AssemblyTitle("DeleteMeLater")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("NuGetPackageHelpers")]
+[assembly: AssemblyProduct("DeleteMeLater")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("4f8d7e77-2f4e-4252-8511-023197d18cee")]
+[assembly: Guid("889a3fd1-ea62-4f89-bd7d-88b32d7f49b6")]
 
 // Version information for an assembly consists of the following four values:
 //
