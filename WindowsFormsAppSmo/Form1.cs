@@ -52,5 +52,10 @@ namespace WindowsFormsAppSmo
         {
             lstTableNames.DataSource = _operations.TableNames(lstDatabaseNames.Text);
         }
+
+        private void IsSqlClrEnabledButton_Click(object sender, EventArgs e)
+        {
+            _operations.IsSqlClrEnabled();
+        }
     }
 }
