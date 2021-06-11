@@ -23,7 +23,7 @@ namespace SMO_Library
     {
          
         /// <summary>
-        /// Your server name e.g. could be (local) - does not work for SQLEXPRESS
+        /// Your server name
         /// </summary>
         public string ServerName { get => ".\\SQLEXPRESS"; }
         private Server _mServer;
@@ -42,11 +42,7 @@ namespace SMO_Library
 
         public void IsSqlClrEnabled()
         {
-            var test = _mServer.Configuration.IsSqlClrEnabled;
-
-            Console.WriteLine();
-
-
+            var result = _mServer.Configuration.IsSqlClrEnabled;
         }
         public DataTable AvailableServers() => SmoApplication.EnumAvailableSqlServers(true);
 
