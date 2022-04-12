@@ -18,39 +18,41 @@ namespace WindowsFormsAppSmo
             InitializeComponent();
         }
 
-        private SmoOperations _operations = new SmoOperations();
+        private readonly SmoOperations _operations = new SmoOperations();
+
         private void cmdLoadDatabaseNames_Click(object sender, EventArgs e)
         {
 
-            lstDatabaseNames.DataSource = _operations.DatabaseNames();
+            DatabaseNamesListBox.DataSource = _operations.DatabaseNames();
 
             /*
              * If Karen's computer there is a database NorthWindAzure
+             * (there is a script for this database in the root of the solution.)
              */
             if (Environment.UserName == "PayneK")
             {
-                var index = lstDatabaseNames.FindString("NorthWindAzure");
+                var index = DatabaseNamesListBox.FindString("NorthWindAzure");
 
                 if (index > -1)
                 {
-                    lstDatabaseNames.SelectedIndex = index;
-                    lstTableNames.DataSource = _operations.TableNames(lstDatabaseNames.Text);
-                    index = lstTableNames.FindString("Orders");
+                    DatabaseNamesListBox.SelectedIndex = index;
+                    TableNamesListBox.DataSource = _operations.TableNames(DatabaseNamesListBox.Text);
+                    index = TableNamesListBox.FindString("Orders");
 
                     if (index > -1)
                     {
-                        lstTableNames.SelectedIndex = index;
+                        TableNamesListBox.SelectedIndex = index;
                     }
                 }
             }
 
 
-            lstDatabaseNames.SelectedIndexChanged += LstDatabaseNames_SelectedIndexChanged;
+            DatabaseNamesListBox.SelectedIndexChanged += LstDatabaseNames_SelectedIndexChanged;
         }
 
         private void LstDatabaseNames_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lstTableNames.DataSource = _operations.TableNames(lstDatabaseNames.Text);
+            TableNamesListBox.DataSource = _operations.TableNames(DatabaseNamesListBox.Text);
         }
 
         private void IsSqlClrEnabledButton_Click(object sender, EventArgs e)

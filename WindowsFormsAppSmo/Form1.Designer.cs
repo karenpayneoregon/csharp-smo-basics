@@ -28,19 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lstDatabaseNames = new System.Windows.Forms.ListBox();
+            this.DatabaseNamesListBox = new System.Windows.Forms.ListBox();
             this.cmdLoadDatabaseNames = new System.Windows.Forms.Button();
-            this.lstTableNames = new System.Windows.Forms.ListBox();
+            this.TableNamesListBox = new System.Windows.Forms.ListBox();
             this.IsSqlClrEnabledButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // lstDatabaseNames
+            // DatabaseNamesListBox
             // 
-            this.lstDatabaseNames.FormattingEnabled = true;
-            this.lstDatabaseNames.Location = new System.Drawing.Point(15, 14);
-            this.lstDatabaseNames.Name = "lstDatabaseNames";
-            this.lstDatabaseNames.Size = new System.Drawing.Size(214, 251);
-            this.lstDatabaseNames.TabIndex = 0;
+            this.DatabaseNamesListBox.FormattingEnabled = true;
+            this.DatabaseNamesListBox.Location = new System.Drawing.Point(15, 14);
+            this.DatabaseNamesListBox.Name = "DatabaseNamesListBox";
+            this.DatabaseNamesListBox.Size = new System.Drawing.Size(214, 251);
+            this.DatabaseNamesListBox.TabIndex = 0;
             // 
             // cmdLoadDatabaseNames
             // 
@@ -52,13 +52,13 @@
             this.cmdLoadDatabaseNames.UseVisualStyleBackColor = true;
             this.cmdLoadDatabaseNames.Click += new System.EventHandler(this.cmdLoadDatabaseNames_Click);
             // 
-            // lstTableNames
+            // TableNamesListBox
             // 
-            this.lstTableNames.FormattingEnabled = true;
-            this.lstTableNames.Location = new System.Drawing.Point(235, 12);
-            this.lstTableNames.Name = "lstTableNames";
-            this.lstTableNames.Size = new System.Drawing.Size(208, 251);
-            this.lstTableNames.TabIndex = 2;
+            this.TableNamesListBox.FormattingEnabled = true;
+            this.TableNamesListBox.Location = new System.Drawing.Point(235, 12);
+            this.TableNamesListBox.Name = "TableNamesListBox";
+            this.TableNamesListBox.Size = new System.Drawing.Size(208, 251);
+            this.TableNamesListBox.TabIndex = 2;
             // 
             // IsSqlClrEnabledButton
             // 
@@ -76,9 +76,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(461, 300);
             this.Controls.Add(this.IsSqlClrEnabledButton);
-            this.Controls.Add(this.lstTableNames);
+            this.Controls.Add(this.TableNamesListBox);
             this.Controls.Add(this.cmdLoadDatabaseNames);
-            this.Controls.Add(this.lstDatabaseNames);
+            this.Controls.Add(this.DatabaseNamesListBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -89,9 +89,9 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox lstDatabaseNames;
+        private System.Windows.Forms.ListBox DatabaseNamesListBox;
         private System.Windows.Forms.Button cmdLoadDatabaseNames;
-        private System.Windows.Forms.ListBox lstTableNames;
+        private System.Windows.Forms.ListBox TableNamesListBox;
         private System.Windows.Forms.Button IsSqlClrEnabledButton;
     }
 }
