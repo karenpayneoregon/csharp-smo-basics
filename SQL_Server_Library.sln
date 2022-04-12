@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2041
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32228.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLibrary", "DataLibrary\DataLibrary.csproj", "{1671CFF1-C8B3-490B-ABEF-EB0632936742}"
 EndProject
@@ -14,6 +14,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5195B08E-1970-4A32-8EC2-0331A69E0F5A}"
 	ProjectSection(SolutionItems) = preProject
 		readme.md = readme.md
+		script.sql = script.sql
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeleteMeLater", "DeleteMeLater\DeleteMeLater.csproj", "{889A3FD1-EA62-4F89-BD7D-88B32D7F49B6}"

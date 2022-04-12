@@ -19,20 +19,22 @@ namespace SMO_Library
     /// C:\Program Files\Microsoft SQL Server\130\SDK\Assemblies
     /// 
     /// </remarks>
-    public class SmoOperations : BaseExceptionProperties
+    public class SmoOperations 
     {
          
         /// <summary>
         /// Your server name
         /// </summary>
-        public string ServerName { get => ".\\SQLEXPRESS"; }
-        private Server _mServer;
+        public string ServerName => ".\\SQLEXPRESS";
+
+        private readonly Server _mServer;
         public Server Server => _mServer;
 
         public SmoOperations()
         {
             _mServer = InitializeServer();
         }
+
         Server InitializeServer()
         {
             var connection = new ServerConnection(ServerName);
@@ -44,6 +46,7 @@ namespace SMO_Library
         {
             var result = _mServer.Configuration.IsSqlClrEnabled;
         }
+
         public DataTable AvailableServers() => SmoApplication.EnumAvailableSqlServers(true);
 
         public List<LocalServer> LocalServers() =>
@@ -55,10 +58,8 @@ namespace SMO_Library
                     ServerName = row.Field<string>("Server")
                 }).ToList();
 
-        public List<string> DatabaseNames()
-        {
-            return _mServer.Databases.OfType<Database>().Select(db => db.Name).ToList();
-        }
+        public List<string> DatabaseNames() 
+            => _mServer.Databases.OfType<Database>().Select(db => db.Name).ToList();
 
         /// <summary>
         /// Determine if database exists on the server.
@@ -86,15 +87,15 @@ namespace SMO_Library
         /// </summary>
         /// <param name="pDatabaseName"></param>
         /// <returns></returns>
-        public Database GetDatabase(string pDatabaseName) => 
-            _mServer.Databases.OfType<Database>().FirstOrDefault(db => db.Name == pDatabaseName);
+        public Database GetDatabase(string pDatabaseName) 
+            => _mServer.Databases.OfType<Database>().FirstOrDefault(db => db.Name == pDatabaseName);
 
         /// <summary>
         /// Create a new database
         /// </summary>
         /// <param name="pDatabaseName">Name of new database</param>
         /// <returns></returns>
-        public SqlDatabase CreateDatabase(string pDatabaseName)
+        public (SqlDatabase db, Exception exception) CreateDatabase(string pDatabaseName)
         {
             var database = new SqlDatabase() { Name = pDatabaseName, Exists = false };
 
@@ -108,14 +109,14 @@ namespace SMO_Library
                 database.Database = db;
                 database.Exists = true;
 
+                return (database, null);
+
             }
             catch (Exception ex)
             {
-                mHasException = true;
-                mLastException = ex;
+                return (null, ex);
             }
 
-            return database;
         }
         /// <summary>
         /// 
@@ -128,9 +129,8 @@ namespace SMO_Library
         /// in SSMS or perhaps some code that recently ran did not release it's connection
         /// to the database to be dropped.
         /// </remarks>
-        public bool DropDatabase(string pDatabaseName, bool pKill = false)
+        public (bool success, Exception exception) DropDatabase(string pDatabaseName, bool pKill = false)
         {
-            bool success = true;
 
             try
             {
@@ -142,16 +142,15 @@ namespace SMO_Library
                 {
                     GetDatabase(pDatabaseName).Drop();
                 }
-                
+
+                return (true, null);
             }
             catch (Exception ex)
             {
-                mHasException = true;
-                mLastException = ex;
-                success = false;
+                return (false, ex);
             }
 
-            return success;
+
         }
         /// <summary>
         /// Get table names for database
@@ -221,7 +220,7 @@ namespace SMO_Library
         {
             var columnNames = new List<string>();
 
-            var database = _mServer.Databases.OfType<Database>()
+            Database database = _mServer.Databases.OfType<Database>()
                 .FirstOrDefault(db => db.Name == pDatabaseName);
 
             if (database != null)
@@ -236,16 +235,17 @@ namespace SMO_Library
             }
 
             return columnNames;
+
         }
         /// <summary>
         /// An example for creating a database with one table
         /// </summary>
         /// <returns></returns>
-        public bool CreateTable(string pDatabaseName)
+        public (bool success, Exception exception) CreateTable(string pDatabaseName)
         {
             try
             {
-                SqlDatabase db = CreateDatabase(pDatabaseName);
+                var (db, exception) = CreateDatabase(pDatabaseName);
 
                 var tblCustomer = new Table(db.Database, "Customer");
                 var colPrimaryKey = new Column(tblCustomer, "Id", DataType.Int)
@@ -270,31 +270,32 @@ namespace SMO_Library
                 {
                     Nullable = true
                 };
+
                 tblCustomer.Columns.Add(colFirstName);
 
                 var colLastName = new Column(tblCustomer, "LastName", DataType.NVarCharMax)
                 {
                     Nullable = true
                 };
+
                 tblCustomer.Columns.Add(colLastName);
 
                 var colBirthDate = new Column(tblCustomer, "BirthDate", DataType.Date)
                 {
                     Nullable = true
                 } ;
+
                 tblCustomer.Columns.Add(colBirthDate);
 
 
                 tblCustomer.Create();
 
-                return true;
+                return (true, null);
 
             }
             catch (Exception ex)
             {
-                mHasException = true;
-                mLastException = ex;
-                return false;
+                return (false, ex);
             }
         }
         /// <summary>
@@ -305,12 +306,14 @@ namespace SMO_Library
         {
             return _mServer.Name;
         }
+
         public string DefaultServerName()
         {
             var connection = new ServerConnection();
             return connection.TrueName;
 
         }
+
         /// <summary>
         /// Return SQL-Server install path
         /// </summary>
@@ -319,6 +322,7 @@ namespace SMO_Library
         {
             return _mServer.RootDirectory;
         }
+
         /// <summary>
         /// Does a column name exists in a table within a specific database
         /// </summary>
@@ -344,6 +348,7 @@ namespace SMO_Library
 
             return exists;
         }
+
         /// <summary>
         /// Get details for each column in a table within a database.
         /// There are more details then returned here so feel free to explore.
@@ -378,6 +383,7 @@ namespace SMO_Library
 
             return columnDetails;
         }
+
         /// <summary>
         /// Get foreign key details for specified table in specified database
         /// </summary>

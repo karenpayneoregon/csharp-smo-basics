@@ -1,6 +1,8 @@
-# About
+# Basic SMO operations
 
-Basic SMO operations. Only a small portion is shown in the form project, look at SmoOperations for more.
+Only a small portion is shown in the form project.
+
+Look at SmoOperations class and the unit test project.
 
 > Get-Package | ft -AutoSize
 
