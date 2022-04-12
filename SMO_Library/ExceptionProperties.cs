@@ -2,6 +2,7 @@
 
 namespace SMO_Library
 {
+    [Obsolete("Not used any more", true)]
     public class BaseExceptionProperties
     {
         protected bool mHasException;
