@@ -21,9 +21,9 @@ namespace SMO_Library
     /// </remarks>
     public class SmoOperations : BaseExceptionProperties
     {
-
+         
         /// <summary>
-        /// Your server name e.g. could be (local) - does not work for SQLEXPRESS
+        /// Your server name
         /// </summary>
         public string ServerName => ".\\SQLEXPRESS";
 
@@ -41,6 +41,10 @@ namespace SMO_Library
             return sqlServer;
         }
 
+        public void IsSqlClrEnabled()
+        {
+            var result = _mServer.Configuration.IsSqlClrEnabled;
+        }
         public DataTable AvailableServers() => SmoApplication.EnumAvailableSqlServers(true);
 
         public List<LocalServer> LocalServers() =>
