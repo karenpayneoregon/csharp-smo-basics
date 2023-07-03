@@ -2,6 +2,8 @@
 
 Basic SMO operations. Only a small portion is shown in the form project, look at SmoOperations for more.
 
+[Getting Started in SMO](https://docs.microsoft.com/en-us/sql/relational-databases/server-management-objects-smo/getting-started-in-smo?view=sql-server-ver15)
+
 > Get-Package | ft -AutoSize
 
 |Id|Versions|ProjectName|

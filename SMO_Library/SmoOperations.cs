@@ -25,7 +25,8 @@ namespace SMO_Library
         /// <summary>
         /// Your server name e.g. could be (local) - does not work for SQLEXPRESS
         /// </summary>
-        public string ServerName { get => ".\\SQLEXPRESS"; }
+        public string ServerName => ".\\SQLEXPRESS";
+
         private Server _mServer;
         public Server Server => _mServer;
 
@@ -266,18 +267,21 @@ namespace SMO_Library
                 {
                     Nullable = true
                 };
+                
                 tblCustomer.Columns.Add(colFirstName);
 
                 var colLastName = new Column(tblCustomer, "LastName", DataType.NVarCharMax)
                 {
                     Nullable = true
                 };
+                
                 tblCustomer.Columns.Add(colLastName);
 
                 var colBirthDate = new Column(tblCustomer, "BirthDate", DataType.Date)
                 {
                     Nullable = true
                 } ;
+                
                 tblCustomer.Columns.Add(colBirthDate);
 
 
@@ -409,6 +413,65 @@ namespace SMO_Library
 
             return keyList;
 
+        }
+
+        public void Test()
+        {
+            ScriptingOptions create = new ScriptingOptions
+            {
+                IncludeIfNotExists = true, 
+                ScriptForAlter = true
+            };
+
+            SqlSmoObject destinationTable = null;
+            Index newDestinationIndex = new Index(destinationTable, "name")
+            {
+                IndexKeyType = IndexKeyType.DriPrimaryKey,
+                IsClustered = true,
+                IsUnique = true,
+                CompactLargeObjects = true,
+                IgnoreDuplicateKeys = true,
+                IsFullTextKey = true,
+                PadIndex = false,
+                FileGroup = "",
+                FillFactor = new byte()
+            };
+
+
+            newDestinationIndex.Script(create);
+            
+        }
+        
+        public void Test1()
+        {
+            //Connect to the local, default instance of SQL Server.   
+            Server srv;
+            srv = new Server();
+            //Reference the AdventureWorks2012 database.   
+            Database db;
+            db = srv.Databases["AdventureWorks2012"];
+            //Define a Table object variable by supplying the parent database and table name in the constructor.   
+            Table tb;
+            tb = new Table(db, "Test_Table");
+            //Add various columns to the table.   
+            var col1 = new Column(tb, "Name", DataType.NChar(50)) {Collation = "Latin1_General_CI_AS", Nullable = true};
+            tb.Columns.Add(col1);
+            var col2 = new Column(tb, "ID", DataType.Int) {Identity = true, IdentitySeed = 1, IdentityIncrement = 1};
+            tb.Columns.Add(col2);
+            var col3 = new Column(tb, "Value", DataType.Real);
+            tb.Columns.Add(col3);
+            var col4 = new Column(tb, "Date", DataType.DateTime) {Nullable = false};
+            tb.Columns.Add(col4);
+            //Create the table on the instance of SQL Server.   
+            tb.Create();
+            //Add another column.   
+            var col5 = new Column(tb, "ExpiryDate", DataType.DateTime);
+            col5.Nullable = false;
+            tb.Columns.Add(col5);
+            //Run the Alter method to make the change on the instance of SQL Server.   
+            tb.Alter();
+            //Remove the table from the database.   
+            tb.Drop();
         }
     }
 }
